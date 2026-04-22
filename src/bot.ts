@@ -1,7 +1,15 @@
 import { Bot } from "grammy";
 
-const BOT_TOKEN = "8624189748:AAGYpNZ96VdgbfWuZRaGtm8jwUTx1wYSU9g";
-const OWNER_ID = 1095175548;
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const OWNER_ID = process.env.OWNER_ID;
+
+if (!BOT_TOKEN) {
+  throw new Error("BOT_TOKEN отсутвутсвует");
+}
+
+if (!OWNER_ID) {
+  throw new Error("OWNER_ID отсутвутсвует");
+}
 
 const bot = new Bot(BOT_TOKEN);
 
