@@ -20,13 +20,22 @@ jobs:
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} "
             cd /root/bot/hiko
             
+            echo '=== Обновляем код ==='
             git fetch origin
             git reset --hard origin/main
             
-            npm install
+            echo '=== Проверяем зависимости ==='
+            # Установить только если package.json изменился
+            npm install --prefer-offline --no-audit --no-fund
+            
+            echo '=== Компилируем ==='
             npm run build
+            
+            echo '=== Перезапускаем бота ==='
             pm2 restart hiko-bot
             
-            echo ' === Статус ==='
+            echo '=== Статус ==='
             pm2 list
+            
+            echo '=== Готово ==='
           "
