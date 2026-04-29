@@ -13,6 +13,17 @@ const bot = new Bot(BOT_TOKEN);
 
 let businessModeEnabled = true;
 
+const testApi = async () => {
+  try {
+    const me = await bot.api.getMe();
+    console.log("API доступен");
+  } catch (error) {
+    console.error("Ошибка API:", error);
+    
+  }
+};
+testApi();
+
 const getControlKeyboard = () => {
   const toggleText = businessModeEnabled ? "🔴 Выключить бизнес-режим" : "🟢 Включить бизнес-режим";
   
