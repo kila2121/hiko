@@ -27,6 +27,6 @@ jobs:
             npm run build
             pm2 restart hiko-bot
             
-            echo '=== Статус ==='
+            echo ' === Статус ==='
             pm2 list
           "
